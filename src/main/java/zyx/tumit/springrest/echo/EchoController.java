@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Month;
 
 @RestController()
@@ -19,10 +21,13 @@ public class EchoController {
 
     @GetMapping("/beans/{id}")
     public EchoBean findOne(@PathVariable("id") final long id) {
+        LocalDate localDate = LocalDate.of(2019, Month.JANUARY, 31);
+        LocalTime localTime = LocalTime.of(11, 38 , 1);
         return EchoBean.builder()
                 .id(id)
                 .name("Fake Name")
-                .dob(LocalDate.of(2019, Month.JANUARY, 31))
+                .dob(localDate)
+                .createdDate(LocalDateTime.of(localDate, localTime))
                 .build();
     }
 }
