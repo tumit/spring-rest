@@ -39,6 +39,15 @@ jacocoTestReport {
         html.enabled true
         html.destination file("${buildDir}/reports/jacoco")
     }
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: [
+                            '**/*Config.**',
+                            '**/*Application.**'
+                    ])
+        })
+    }
     executionData(test, integrationTest)
 }
 
