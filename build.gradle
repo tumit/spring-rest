@@ -13,6 +13,7 @@ buildscript {
 plugins {
     id 'org.unbroken-dome.test-sets' version '2.0.3'
     id 'com.adarshr.test-logger' version '1.6.0'
+    id 'jacoco'
 }
 
 apply plugin: 'java'
@@ -29,6 +30,16 @@ repositories {
 
 testSets {
     integrationTest { dirName = 'test-integration' }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.enabled true
+        html.destination file("${buildDir}/reports/jacoco")
+    }
+    executionData(test, integrationTest)
 }
 
 dependencies {
