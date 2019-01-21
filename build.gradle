@@ -61,6 +61,9 @@ dependencies {
     implementation "io.springfox:springfox-swagger2:$springfoxSwaggerVersion"
     implementation "io.springfox:springfox-swagger-ui:$springfoxSwaggerVersion"
 
+    implementation "org.apache.commons:commons-lang3:3.8.1"
+
+
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 

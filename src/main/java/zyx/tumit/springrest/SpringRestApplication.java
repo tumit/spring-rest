@@ -21,6 +21,9 @@ public class SpringRestApplication {
     public CommandLineRunner demo(FoodRepository repository) {
         return (args)  -> {
             log.info("args={}", args);
+//            repository.save(Food.builder().id(1L).name("Apple").calories(300F).build());
+//            repository.save(Food.builder().id(2L).name("Banana").calories(200F).build());
+//            repository.save(Food.builder().id(3L).name("Potato").calories(100F).build());
         };
     }
 

@@ -5,10 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.Import;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import zyx.tumit.springrest.jpa.JpaConfig;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,8 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 @RunWith(SpringRunner.class)
-@DataJpaTest
-@Import(JpaConfig.class)
+@SpringBootTest
 public class FoodRepositoryTest {
 
     @Autowired
@@ -26,13 +23,13 @@ public class FoodRepositoryTest {
 
     @Before
     public void setUp() throws Exception {
-        repository.save(Food.builder().name("Apple").calories(300F).build());
-        repository.save(Food.builder().name("Banana").calories(200F).build());
-        repository.save(Food.builder().name("Potato").calories(100F).build());
+        repository.save(Food.builder().id(1L).name("Apple").calories(300F).build());
+        repository.save(Food.builder().id(2L).name("Banana").calories(200F).build());
+        repository.save(Food.builder().id(3L).name("Potato").calories(100F).build());
     }
 
     @Test
-    public void findById() {
+    public void shouldFindByIdSuccessful() {
         // arrange
         // act
         Optional<Food> food = repository.findById(1L);
@@ -42,7 +39,7 @@ public class FoodRepositoryTest {
     }
 
     @Test
-    public void lessThan201Calories() {
+    public void shouldFindByLessThanCaloriesSuccess() {
         // arrange
         // act
         List<Food> foods = repository.findByCaloriesLessThanOrderByCalories(201F);

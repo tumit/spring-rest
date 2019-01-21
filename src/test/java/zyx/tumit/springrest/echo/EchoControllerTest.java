@@ -33,7 +33,7 @@ public class EchoControllerTest {
     @Before
     public void setUp() {
         // init JacksonTester and MappingJackson2HttpMessageConverter
-        ObjectMapper objectMapper = createObjectMapper();
+        ObjectMapper objectMapper = ObjectMapperHelper.createObjectMapper();
         JacksonTester.initFields(this, objectMapper);
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter(objectMapper);
 
@@ -44,13 +44,6 @@ public class EchoControllerTest {
         this.mvc = MockMvcBuilders.standaloneSetup(controller)
                 .setMessageConverters(converter)
                 .build();
-    }
-
-    private ObjectMapper createObjectMapper() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
-        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        return objectMapper;
     }
 
     @Test

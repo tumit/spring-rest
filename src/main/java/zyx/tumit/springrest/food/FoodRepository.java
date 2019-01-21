@@ -1,9 +1,9 @@
 package zyx.tumit.springrest.food;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface FoodRepository extends CrudRepository<Food, Long> {
+public interface FoodRepository extends JpaRepository<Food, Long> {
     List<Food> findByCaloriesLessThanOrderByCalories(float calories);
 }
